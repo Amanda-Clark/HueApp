@@ -1,0 +1,54 @@
+﻿<Window x:Class="HueApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HueApp"
+        xmlns:viewModels="clr-namespace:HueApp.ViewModels"
+        mc:Ignorable="d"
+        Title="WPF Hue App" Height="429.333" Width="621.35" Loaded="Window_Loaded">
+    <Window.Resources>
+        <viewModels:MainWindowModel x:Key="ViewModel" />
+    </Window.Resources>
+    <Grid DataContext="{StaticResource ViewModel}" Name ="MyGrid" Margin="0,25,-0.333,-0.333">
+        <StackPanel Margin="15">
+            <DockPanel VerticalAlignment="Center" Margin="10">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Top">Lights</Label>
+            </DockPanel>
+            <DockPanel VerticalAlignment="Center" Margin="5">
+                <TextBox Name="ColorPreview" Width="100" HorizontalAlignment="Center" ></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <CheckBox Name="LightOff" HorizontalAlignment="Center" Checked="LightOff_Checked" Unchecked="LightOff_Checked">Turn Light Off/On</CheckBox>
+            </DockPanel>
+            <DockPanel VerticalAlignment="Center" Margin="10">
+                <Label HorizontalAlignment="Center" Name="StatusLbl" VerticalAlignment="Top" >Light is off</Label>
+            </DockPanel>
+            <DockPanel VerticalAlignment="Center" Margin="10">
+                <ComboBox Name="LightsCombo" HorizontalAlignment="Center" SelectionChanged="LightsCombo_SelectionChanged">
+                </ComboBox>
+            </DockPanel>
+                   
+            
+            <DockPanel VerticalAlignment="Center" Margin="10">
+                <Label DockPanel.Dock="Left" FontWeight="Bold">Bri:</Label>
+                <TextBox Text="{Binding ElementName=slBri, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                <Slider Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="slBri" ValueChanged="BriSlider_ValueChanged" />
+            </DockPanel>
+
+            <DockPanel VerticalAlignment="Center" Margin="10">
+                <Label DockPanel.Dock="Left" FontWeight="Bold">Hue:</Label>
+                <TextBox Text="{Binding ElementName=slHue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                <Slider Maximum="65535" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="slHue" ValueChanged="HueSlider_ValueChanged" />
+            </DockPanel>
+
+            <DockPanel VerticalAlignment="Center" Margin="10">
+                <Label DockPanel.Dock="Left" FontWeight="Bold">Sat:</Label>
+                <TextBox Text="{Binding ElementName=slSat, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                <Slider Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="slSat" ValueChanged="SatSlider_ValueChanged" />
+            </DockPanel>
+            
+
+        </StackPanel>
+    </Grid>
+</Window>
